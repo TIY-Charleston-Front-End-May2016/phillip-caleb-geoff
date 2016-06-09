@@ -11,7 +11,7 @@ var chatPage = {
     chatPage.events();
   },
   styling: function() {
-    chatPage.updateChat()
+    chatPage.getChat();
   },
   events: function() {
     //events go in here
@@ -28,10 +28,11 @@ var chatPage = {
             }
     })
 
-  } /* --------------------------------------- end of events */
+  }, /* --------------------------------------- end of events */
 
 
 // create chat windows
+
     createChat: function(chat) {
       $.ajax({
         url: chatPage.url,
@@ -41,9 +42,9 @@ var chatPage = {
           console.log("WE CREATED SOMETHING", data);
 
     // will need something similar to add chat messages
-          // var htmlStr = blogPage.htmlGenerator(blogTemplates.blogTmpl,data)
-          // blogPage.blogs.push(data);
-          // $('.blogs ul').append(htmlStr);
+          var htmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,data)
+          chatPage.chat.push(data);
+          $('.main-container').append(htmlStr);
 
         },
         error: function(err) {
@@ -57,7 +58,7 @@ var chatPage = {
 
       $.ajax({
         method: 'PUT',
-        url: chatPage.url     //+ "/" + blog.id, need id for individual users?
+        url: chatPage.url,    //+ "/" + blog.id, need id for individual users?
         data: chat,
         success: function(data) {
           console.log("UPDATED SUCCESSFULLY!!!", data);
@@ -76,11 +77,12 @@ var chatPage = {
         method: "GET",
         success: function(data) {
           console.log("WE GOT SOMETHING", data);
-          // $('.blogs ul').html("");
-          // data.forEach(function(element,idx) {
-          //   var blogHtmlStr = blogPage.htmlGenerator(blogTemplates.blogTmpl,element);
-          //   $('.blogs ul').append(blogHtmlStr)
-          //   blogPage.blogs.push(element);
+          $('.main-container').html("");
+        data.forEach(function(element,idx) {
+          var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
+          $('.main-container').append(htmlStr);
+          chatPage.chat.push(data);
+
           });
         },
         error: function(err) {
