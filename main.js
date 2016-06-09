@@ -17,15 +17,19 @@ var chatPage = {
     //events go in here
 
     // CREATE NEW MESSAGE BY HITTING ENTER.
-    $('.messageArea').keypress(function(){
+    $('.messageArea').keypress(function(e){
       //enter pressed ?
       if(e.which == 10 || e.which == 13) {
           console.log("the enter button works on...", $('.messageArea'));
-          var newMsg = $(this).val();
-          console.log(newMsg);
+          var newMsg = {
+            message: $(this).val()
+          }
+
+          console.log("this is the message to save", newMsg);
             chatPage.createChat(newMsg);
             $(this).val("");
             }
+          // chatPage.updateChat(newMsg)
     })
 
   }, /* --------------------------------------- end of events */
@@ -77,10 +81,10 @@ var chatPage = {
         method: "GET",
         success: function(data) {
           console.log("WE GOT SOMETHING", data);
-          $('.main-container').html("");
+          // $('.main-container').html("");
         data.forEach(function(element,idx) {
           var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
-          $('.main-container').append(htmlStr);
+          $('.main-container').append(chatHtmlStr);
           chatPage.chat.push(data);
 
           });
