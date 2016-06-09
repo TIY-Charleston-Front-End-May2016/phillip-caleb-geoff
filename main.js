@@ -48,7 +48,8 @@ var chatPage = {
     // will need something similar to add chat messages
           var htmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,data)
           chatPage.chat.push(data);
-          $('.main-container').append(htmlStr);
+          $('.chat-window').append(htmlStr);
+          chatPage.getChat();
 
         },
         error: function(err) {
@@ -81,10 +82,10 @@ var chatPage = {
         method: "GET",
         success: function(data) {
           console.log("WE GOT SOMETHING", data);
-          // $('.main-container').html("");
+          $('.chat-window').html("");
         data.forEach(function(element,idx) {
           var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
-          $('.main-container').append(chatHtmlStr);
+          $('.chat-window').append(chatHtmlStr);
           chatPage.chat.push(data);
 
           });
