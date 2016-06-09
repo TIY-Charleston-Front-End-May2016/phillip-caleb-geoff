@@ -11,7 +11,7 @@ var chatPage = {
     chatPage.events();
   },
   styling: function() {
-
+    chatPage.updateChat()
   },
   events: function() {
     //events go in here

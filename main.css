@@ -24,3 +24,15 @@ body {
 .messageArea {
   border: 3px solid #8c5d00;
   width: 99%; }
+
+.my-msgs, .other-msgs {
+  display: block;
+  width: 200px;
+  height: 70px;
+  border-radius: 10px; }
+
+.my-msgs {
+  background-color: tan; }
+
+.other-msgs {
+  background-color: burlywood; }
