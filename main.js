@@ -1,4 +1,12 @@
 //test test geoff edit
+
+//this requests animation layer with setTimeout fallback
+window.requestAnimFrame = (function(){
+  return  function( callback ){
+            window.setTimeout(callback, 1000);
+          };
+})();
+
 $(document).ready(function() {
   chatPage.init();
 })
@@ -6,6 +14,7 @@ $(document).ready(function() {
 var chatPage = {
   url: 'http://tiny-tiny.herokuapp.com/collections/pottytalk',
   chat: [],
+  users: [],
   init: function() {
     chatPage.styling();
     chatPage.events();
@@ -14,12 +23,67 @@ var chatPage = {
     chatPage.getChat();
   },
   events: function() {
-    //events go in here
+
+    //BOX SHADOW ANIMATION FOR LOGIN
+    //modified Brian Gonzolez's codepen: http://codepen.io/briangonzalez/pen/Btmpe
+      var $shadow = $('#login');
+        var shadowLimit = 200;
+        var moveEvent = ('ontouchstart' in document.documentElement) ? "touchmove" : "mousemove";
+
+        (function animloop(){
+          requestAnimFrame(animloop);
+
+          $(window).bind(moveEvent, function(event){
+            var $this = $(this);
+            var w      = $this.width();
+            var h      = $this.height();
+            var center = { x: w/2, y: h/12 };
+
+            var evX = (moveEvent == 'touchmove') ? event.originalEvent.touches[0].clientX : event.clientX;
+            var evY = (moveEvent == 'touchmove') ? event.originalEvent.touches[0].clientY : event.clientY;
+
+            var shadowX = (center.x - evX) / 10;
+            var shadowY = (center.y - evY) / 10;
+
+            shadowX = (shadowX > shadowLimit) ? shadowLimit : shadowX;
+            shadowX = (shadowX < shadowLimit*-1) ? shadowLimit*-1 : shadowX;
+            shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
+            shadowY = (shadowY < shadowLimit*-1) ? shadowLimit*-1 : shadowY;
+
+            $shadow.css({ boxShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY + 50) +'px '+ Math.abs(shadowX*shadowY)/10 +'px  rgba(0,0,0,0.2)' });
+         });
+        })();
+
+//  SUBMIT USERNAME VIA (( ENTER )) & STORE IN USERS ARRAY & BEGIN CHAT
+    $('#formid').on('keypress click', function(e) {
+      var keyCode = e.keyCode || e.which;
+      if (keyCode === 13) {
+        e.preventDefault();
+        var $username = $('input[type=text]').val()
+        console.log($username);
+        chatPage.users.push($username);
+        $('input[type=text]').val('');
+        $('#login').fadeOut(2000);
+        $('.main-container').removeClass('hidden').fadeIn(2000);
+        return false;
+      }
+    });
+
+    // SUBMIT USERNAME VIA (( BUTTON )) & STORE IN USERS ARRAY & BEGIN CHAT
+    $('.loginButton').on('click', function(event){
+      event.preventDefault();
+      var $username = $('input[type=text]').val()
+      console.log($username);
+      chatPage.users.push($username);
+      $('input[type=text]').val('');
+      $('#login').fadeOut(2000);
+      $('.main-container').removeClass('hidden').fadeIn(2000);
+    })
 
     // CREATE NEW MESSAGE BY HITTING ENTER.
-    $('.messageArea').keypress(function(e){
+    $('.messageArea').keypress(function(event){
       //enter pressed ?
-      if(e.which == 10 || e.which == 13) {
+      if(event.which == 10 || event.which == 13) {
           console.log("the enter button works on...", $('.messageArea'));
           var newMsg = {
             message: $(this).val()
@@ -59,6 +123,7 @@ var chatPage = {
           var htmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,data)
           chatPage.chat.push(data);
           $('.chat-window').append(htmlStr);
+          chatPage.getChat();
 
         },
         error: function(err) {
