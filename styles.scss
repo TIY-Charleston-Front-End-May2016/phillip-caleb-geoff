@@ -2,6 +2,88 @@
 $primary-color: rgb(140, 93, 0);
 $secondary-color: lightslategray;
 
+// USER lOGIN
+#login {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: box-shadow 200ms;
+  transition: box-shadow 200ms;
+  box-shadow: 0 10px 6px 5px rgba(50,50,50,0.1);
+  z-index: 1;
+  height: 500px;
+  &:after {
+    content: '';
+    border-radius: 5px;
+    background-image: url(login-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: (0.6);
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+  }
+  h4 {
+    text-align: center;
+    width: 80%;
+    margin-top: 0;
+    margin-bottom: 50px;
+    color: white;
+    line-height: 30px;
+    font-size: 1.1em;
+    z-index: 2;
+  }
+  form {
+    width: 60%;
+    text-align: center;
+    position: relative;
+    border-radius: 5px;
+    // box-shadow: 0 0 8px 1px rgba(255,255,255,0.5);
+    // background-color: white;
+    display: inline-block;
+    margin-top: 10px;
+    z-index: 2;
+  }
+  input[name=username] {
+    width: 70%;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.4em;
+    padding-left: 20px;
+    border: none;
+    border-bottom: .3px solid rgba(255,255,255,0.8);
+    outline: none;
+    background-color: rgba(255,255,255,0.0);
+    &::-webkit-input-placeholder {
+    color: white !important;
+    }
+    &:focus {
+      background-color: rgba(255,255,255,0.1);
+    }
+  }
+  button{
+    width: 80%;
+    margin-top: 20px;
+    color: white;
+    border: .5px solid white;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(255,255,255,0.0);
+    &:hover {
+      font-weight: 200;
+      border: .8px solid white;
+      background-color: rgba(255,255,255,0.2);
+    }
+  }
+}
+
 
 //MAIN STYLES
 body {
@@ -9,26 +91,32 @@ body {
 }
 
 .main-container {
+  display: inline-flex;
   border: 5px solid $primary-color;
   width: 80%;
   height: 500px;
   margin: 0 auto;
-  margin-top: -7%;
+  margin-top: 3%;
   background-color: white;
   flex-direction: column;
-    display: inline-flex;
-    justify-content: flex-end;
-        margin-left: 8%;
+  justify-content: flex-end;
+  position: relative;
+ }
+ .hidden {
+   display: none;
  }
 
-  .logoContainer {
-    background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: center;
-   margin-left: 20%;
-    width: 79%;
-    margin-bottom: 3%;
+.logoContainer {
+  width: 79%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  img {
+    display: inline-block;
+    height: 100px;
+    margin: 0 auto;
   }
+}
 
 // INPUT
 .messageArea {
@@ -52,7 +140,7 @@ body {
 }
 
 .other-msgs {
-  
+
   background-color: burlywood;
 
 }
