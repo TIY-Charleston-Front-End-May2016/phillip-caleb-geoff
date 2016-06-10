@@ -4,7 +4,8 @@ var chatTemplates = {
   myMsgs:`
     <div class="my-msgs" data-id="<%= _id %>">
       <p> <%= message %> </p>
-      <button class="delete">Flush</button>
+      <button class="delete"></button>
+      <label for="delete">Flush</label>
     </div>
   `,
   otherMsgs: `
