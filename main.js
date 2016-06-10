@@ -18,8 +18,9 @@ var chatPage = {
   init: function() {
     chatPage.styling();
     chatPage.events();
-
-    
+    setInterval(function() {
+      chatPage.getChat() 
+    },2000);
   },
   styling: function() {
     chatPage.getChat();
@@ -135,6 +136,7 @@ var chatPage = {
     },
 
 //update chat windows
+//**** set timing interval for refresh
     updateChat: function(chat) {
 
       $.ajax({
