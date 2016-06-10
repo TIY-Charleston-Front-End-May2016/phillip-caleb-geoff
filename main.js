@@ -164,7 +164,7 @@ var chatPage = {
           // console.log("WE GOT SOMETHING", data);
           $('.chat-window').html("");
         data.forEach(function(element,idx) {
-          if (chatPage.users === element.username) {
+          if (chatPage.users[0] === element.username) {
           var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
           $('.chat-window').append(chatHtmlStr);
           chatPage.chat.push(data);

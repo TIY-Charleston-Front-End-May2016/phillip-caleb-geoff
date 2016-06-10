@@ -75,6 +75,7 @@ body {
 
 .main-container {
   display: inline-flex;
+  flex-direction: column;
   border: 5px solid #8c5d00;
   width: 80%;
   height: 500px;

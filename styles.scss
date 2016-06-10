@@ -94,14 +94,13 @@ body {
 
 .main-container {
   display: inline-flex;
+  flex-direction: column;
   border: 5px solid $primary-color;
   width: 80%;
   height: 500px;
   margin: 0 auto;
   margin-top: 3%;
   background-color: white;
-  // flex-direction: column;
-  // justify-content: flex-end;
   position: relative;
  }
  .hidden {
@@ -138,6 +137,7 @@ body {
   height: 96%;
   width: 100%;
   overflow: scroll;
+  ///THIS IS THE BACKGROUND IMAGE
   // &:after {
   //   content: '';
   //   border-radius: 5px;
