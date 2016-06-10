@@ -68,6 +68,7 @@ var chatPage = {
     },
 
 //update chat windows
+//**** set timing interval for refresh
     updateChat: function(chat) {
 
       $.ajax({
