@@ -18,6 +18,8 @@ var chatPage = {
   init: function() {
     chatPage.styling();
     chatPage.events();
+
+    
   },
   styling: function() {
     chatPage.getChat();
