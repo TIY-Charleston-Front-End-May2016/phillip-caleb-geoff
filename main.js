@@ -18,6 +18,9 @@ var chatPage = {
   init: function() {
     chatPage.styling();
     chatPage.events();
+    setInterval(function() {
+      chatPage.getChat() 
+    },2000);
   },
   styling: function() {
     chatPage.getChat();
