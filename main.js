@@ -19,7 +19,7 @@ var chatPage = {
     chatPage.styling();
     chatPage.events();
     setInterval(function() {
-      chatPage.getChat() 
+      chatPage.getChat()
     },2000);
   },
   styling: function() {
@@ -80,7 +80,7 @@ var chatPage = {
       chatPage.users.push($username);
       $('input[type=text]').val('');
       $('#login').fadeOut(2000);
-      $('.main-container').removeClass('hidden').fadeIn(2000);
+      $('.main-container').fadeIn(4000);
     })
 
     // CREATE NEW MESSAGE BY HITTING ENTER.
