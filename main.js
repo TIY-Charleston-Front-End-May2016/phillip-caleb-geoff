@@ -29,8 +29,18 @@ var chatPage = {
             chatPage.createChat(newMsg);
             $(this).val("");
             }
-          // chatPage.updateChat(newMsg)
+
     })
+
+// delete (flush) function use if/else for delete for author
+    $('.main-container').on('click','.delete', function(event) {
+      event.preventDefault();
+      var chatId = $(this).parent().data('id');
+      console.log(chatId);
+      chatPage.deleteChat(chatId);
+    })
+
+
 
   }, /* --------------------------------------- end of events */
 
@@ -48,7 +58,7 @@ var chatPage = {
     // will need something similar to add chat messages
           var htmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,data)
           chatPage.chat.push(data);
-          $('.main-container').append(htmlStr);
+          $('.chat-window').append(htmlStr);
 
         },
         error: function(err) {
@@ -81,10 +91,10 @@ var chatPage = {
         method: "GET",
         success: function(data) {
           console.log("WE GOT SOMETHING", data);
-          // $('.main-container').html("");
+          $('.chat-window').html("");
         data.forEach(function(element,idx) {
           var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
-          $('.main-container').append(chatHtmlStr);
+          $('.chat-window').append(chatHtmlStr);
           chatPage.chat.push(data);
 
           });
@@ -96,9 +106,9 @@ var chatPage = {
     },
 
 // delete chat windows
-    deletechat: function(blogId) {
+    deleteChat: function(chatId) {
       // find blog to delete from our blog data;
-      // var deleteUrl = blogPage.url + "/" + blogId;
+      var deleteUrl = chatPage.url + "/" + chatId;
       $.ajax({
         url: deleteUrl,
         method: "DELETE",
