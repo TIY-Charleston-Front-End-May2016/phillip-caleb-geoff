@@ -6,12 +6,21 @@
     <link rel="stylesheet" href="node_modules/normalize-css/normalize.css">
     <link rel="stylesheet" href="main.css">
   </head>
-  <div class="logoContainer">
-    <img src="shitchatlogo.png" alt="" />
-  </div>
   <body>
+    <header>
+      <div class="logoContainer">
+        <img src="shitchatlogo.png" alt="" />
+      </div>
+    </header>
+    <div id="login">
+      <h4>When you're walking down the hall, <br> and you feel something fall...</h4>
+      <form id="formid" action="index.html" method="post">
+        <input type="text" name="username" placeholder="type your username">
+        <button type="button" class="loginButton" name="submit">SUBMIT</button>
+      </form>
+    </div>
 
-    <section class= "main-container">
+    <section class= "main-container hidden">
       <section class="chat-window">
         <div class="other-msgs" data-id="2098120394812">
           <h5>Bob Loblaw</h5>
@@ -23,7 +32,7 @@
         </div>
       </section>
 
-    <input class= "messageArea" name="messageInput" placeholder="Time to Shit Chat...">
+    <input class= "messageArea" name="messageInput" placeholder="Time to Shit Shat...">
 
     </section>
     <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
