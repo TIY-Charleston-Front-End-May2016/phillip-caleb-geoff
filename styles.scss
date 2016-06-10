@@ -4,6 +4,7 @@ $secondary-color: lightslategray;
 
 // USER lOGIN
 #login {
+  min-width: 350px;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -99,8 +100,8 @@ body {
   margin: 0 auto;
   margin-top: 3%;
   background-color: white;
-  flex-direction: column;
-  justify-content: flex-end;
+  // flex-direction: column;
+  // justify-content: flex-end;
   position: relative;
  }
  .hidden {
@@ -121,32 +122,38 @@ body {
 
 // INPUT
 .messageArea {
-  border: 3px solid $primary-color;
+  border: none;
+  // border: 3px solid $primary-color;
   width: 99%;
+  outline: none;
 }
 
 
 // CHAT BUBBLES
 .chat-window {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   position: relative;
-  height: 100%;
   vertical-align: bottom;
-  &:after {
-    content: '';
-    border-radius: 5px;
-    background-image: url(login-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: (0.6);
-    position:absolute;
-    width: 100%;
-    height: 100%;
-    top:0;
-    left:0;
-  }
+  height: 96%;
+  width: 100%;
+  overflow: scroll;
+  // &:after {
+  //   content: '';
+  //   border-radius: 5px;
+  //   background-image: url(login-bg.jpg);
+  //   background-size: cover;
+  //   background-size: 200px 200px;
+  //   background-repeat: repeat;
+  //   opacity: (0.3);
+  //   position: fixed;
+  //   width: 100%;
+  //   min-height: 510px;
+  //   top:0;
+  //   left:0;
+  // }
 }
+
 .my-msgs, .other-msgs {
   display: block;
   position: relative;

@@ -19,7 +19,7 @@ var chatPage = {
     chatPage.styling();
     chatPage.events();
     setInterval(function() {
-      chatPage.getChat() 
+      chatPage.getChat()
     },2000);
   },
   styling: function() {
@@ -80,7 +80,7 @@ var chatPage = {
       chatPage.users.push($username);
       $('input[type=text]').val('');
       $('#login').fadeOut(2000);
-      $('.main-container').removeClass('hidden').fadeIn(2000);
+      $('.main-container').fadeIn(4000);
     })
 
     // CREATE NEW MESSAGE BY HITTING ENTER.
@@ -88,8 +88,10 @@ var chatPage = {
       //enter pressed ?
       if(event.which == 10 || event.which == 13) {
           console.log("the enter button works on...", $('.messageArea'));
+          msgUser = chatPage.users[0];
           var newMsg = {
-            message: $(this).val()
+            message: $(this).val(),
+            username: msgUser
           }
 
           console.log("this is the message to save", newMsg);
@@ -159,13 +161,18 @@ var chatPage = {
         url: chatPage.url,
         method: "GET",
         success: function(data) {
-          console.log("WE GOT SOMETHING", data);
+          // console.log("WE GOT SOMETHING", data);
           $('.chat-window').html("");
         data.forEach(function(element,idx) {
+          if (chatPage.users === element.username) {
           var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,element)
           $('.chat-window').append(chatHtmlStr);
           chatPage.chat.push(data);
-
+        } else {
+          var chatHtmlStr = chatPage.htmlGenerator(chatTemplates.otherMsgs,element)
+          $('.chat-window').append(chatHtmlStr);
+          chatPage.chat.push(data);
+        }
           });
         },
         error: function(err) {
