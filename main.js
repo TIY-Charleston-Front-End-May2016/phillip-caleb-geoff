@@ -93,8 +93,18 @@ var chatPage = {
             chatPage.createChat(newMsg);
             $(this).val("");
             }
-          // chatPage.updateChat(newMsg)
+
     })
+
+// delete (flush) function use if/else for delete for author
+    $('.main-container').on('click','.delete', function(event) {
+      event.preventDefault();
+      var chatId = $(this).parent().data('id');
+      console.log(chatId);
+      chatPage.deleteChat(chatId);
+    })
+
+
 
   }, /* --------------------------------------- end of events */
 
@@ -161,9 +171,9 @@ var chatPage = {
     },
 
 // delete chat windows
-    deletechat: function(blogId) {
+    deleteChat: function(chatId) {
       // find blog to delete from our blog data;
-      // var deleteUrl = blogPage.url + "/" + blogId;
+      var deleteUrl = chatPage.url + "/" + chatId;
       $.ajax({
         url: deleteUrl,
         method: "DELETE",
