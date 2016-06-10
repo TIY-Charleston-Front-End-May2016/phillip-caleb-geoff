@@ -88,6 +88,7 @@ $secondary-color: lightslategray;
 //MAIN STYLES
 body {
   background-color: $secondary-color;
+  text-align: center;
 }
 
 .main-container {
@@ -127,16 +128,50 @@ body {
 
 // CHAT BUBBLES
 .chat-window {
-
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  vertical-align: bottom;
+  &:after {
+    content: '';
+    border-radius: 5px;
+    background-image: url(login-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: (0.6);
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+  }
 }
 .my-msgs, .other-msgs {
   display: block;
-  width: 200px;
-  height: 70px;
+  position: relative;
+  width: 100%;
+  min-height: 70px;
   border-radius: 10px;
+  margin: 5px 0 5px 0;
+  z-index: 3;
+  p {
+    display: inline-block;
+  }
 }
 .my-msgs {
   background-color: tan;
+  .delete {
+    background: transparent;
+    background-image: url(flush.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 25px;
+    height: 28px;
+  }
 }
 
 .other-msgs {

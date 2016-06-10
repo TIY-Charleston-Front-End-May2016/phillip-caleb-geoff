@@ -37,7 +37,7 @@ var chatPage = {
             var $this = $(this);
             var w      = $this.width();
             var h      = $this.height();
-            var center = { x: w/2, y: h/12 };
+            var center = { x: w/2, y: h/2 };
 
             var evX = (moveEvent == 'touchmove') ? event.originalEvent.touches[0].clientX : event.clientX;
             var evY = (moveEvent == 'touchmove') ? event.originalEvent.touches[0].clientY : event.clientY;
@@ -50,7 +50,7 @@ var chatPage = {
             shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
             shadowY = (shadowY < shadowLimit*-1) ? shadowLimit*-1 : shadowY;
 
-            $shadow.css({ boxShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY + 50) +'px '+ Math.abs(shadowX*shadowY)/10 +'px  rgba(0,0,0,0.2)' });
+            $shadow.css({ boxShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY + 20) +'px '+ Math.abs(shadowX*shadowY)/4 +'px  rgba(0,0,0,0.2)' });
          });
         })();
 
