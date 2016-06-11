@@ -8,8 +8,8 @@
   margin: 0 auto;
   position: relative;
   border-radius: 5px;
-  -webkit-transition: box-shadow 200ms;
-  transition: box-shadow 200ms;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
   box-shadow: 0 10px 6px 5px rgba(50, 50, 50, 0.1);
   z-index: 1;
   height: 500px; }
@@ -76,13 +76,27 @@ body {
 .main-container {
   display: inline-flex;
   flex-direction: column;
-  border: 5px solid #8c5d00;
   width: 80%;
-  height: 500px;
-  margin: 0 auto;
+  background: transparent;
+  border-radius: 5px;
+  height: 400px;
+  margin: 10px auto;
   margin-top: 3%;
-  background-color: white;
-  position: relative; }
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 6px 5px rgba(50, 50, 50, 0.1); }
+  .main-container:before {
+    content: '';
+    border-radius: 5px;
+    background-image: url(login-bg.jpg);
+    background-size: cover;
+    background-size: 500px 300px;
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+    height: 365px;
+    top: 0;
+    left: 0; }
 
 .hidden {
   display: none; }
@@ -98,14 +112,22 @@ body {
     margin: 0 auto; }
 
 .messageArea {
+  display: flex;
   border: none;
-  width: 99%;
-  outline: none; }
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  border-top: 5px solid lightslategray;
+  outline: none;
+  padding-left: 10px;
+  min-height: 30px;
+  z-index: 3; }
 
 .chat-window {
   display: flex;
   flex-direction: column-reverse;
   position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   vertical-align: bottom;
   height: 96%;
   width: 100%;
@@ -114,16 +136,20 @@ body {
 .my-msgs, .other-msgs {
   display: block;
   position: relative;
-  width: 100%;
-  min-height: 70px;
+  width: 46%;
+  margin-bottom: 10px;
   border-radius: 10px;
-  margin: 5px 0 5px 0;
-  z-index: 3; }
-  .my-msgs p, .other-msgs p {
-    display: inline-block; }
+  z-index: 3;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow-wrap: break-word; }
+  .my-msgs span, .other-msgs span {
+    display: inline-block;
+    width: 75%;
+    margin: 10px auto; }
 
 .my-msgs {
-  background-color: tan; }
+  background-color: antiquewhite; }
   .my-msgs .delete {
     background: transparent;
     background-image: url(flush.png);
@@ -133,7 +159,17 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     width: 25px;
-    height: 28px; }
+    height: 28px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5%; }
+    .my-msgs .delete:hover {
+      background-color: rgba(255, 255, 255, 0.2); }
 
 .other-msgs {
-  background-color: burlywood; }
+  background-color: wheat;
+  align-self: flex-end; }
+  .other-msgs h5 {
+    margin: 0 0 0 5px;
+    font-weight: bold;
+    display: inline-block; }

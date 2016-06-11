@@ -19,7 +19,7 @@ var chatPage = {
     chatPage.styling();
     chatPage.events();
     setInterval(function() {
-      chatPage.getChat()
+      chatPage.getChat();
     },2000);
   },
   styling: function() {
@@ -66,8 +66,9 @@ var chatPage = {
         console.log($username);
         chatPage.users.push($username);
         $('input[type=text]').val('');
-        $('#login').fadeOut(2000);
-        $('.main-container').removeClass('hidden').fadeIn(2000);
+        $('#login').fadeOut(350);
+        $('#login').css({"-webkit-transform":"translate(0,-900px)"});
+        $('.main-container').css("display", "inline-flex").hide().fadeIn(2300);
         return false;
       }
     });
@@ -79,8 +80,9 @@ var chatPage = {
       console.log($username);
       chatPage.users.push($username);
       $('input[type=text]').val('');
-      $('#login').fadeOut(2000);
-      $('.main-container').fadeIn(4000);
+      $('#login').fadeOut(350);
+      $('#login').css({"-webkit-transform":"translate(0,-900px)"});
+      $('.main-container').css("display", "inline-flex").hide().fadeIn(2300);
     })
 
     // CREATE NEW MESSAGE BY HITTING ENTER.
@@ -127,7 +129,7 @@ var chatPage = {
     // will need something similar to add chat messages
           var htmlStr = chatPage.htmlGenerator(chatTemplates.myMsgs,data)
           chatPage.chat.push(data);
-          $('.chat-window').append(htmlStr);
+          $('.chat-window').prepend(htmlStr);
           chatPage.getChat();
 
         },
